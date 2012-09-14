@@ -1,0 +1,44 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<SortSample.Models.Person>
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row-fluid">
+    <!--pagination class is included so that search comes in line with the pagination control-->
+    <div class="pagination span4">
+        @using (Html.BeginForm("Index", "Person", FormMethod.Get, new { @class = "form-search" }))
+        {
+            <p>
+                Find : @Html.TextBox("q")
+                <input type="submit" value="Search" class="btn" /></p>
+        }
+    </div>
+    <div class="pull-right">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { p = page, s = Request["s"], q = Request["q"] }))
+    </div>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.ActionLink("First Name", "Index", new { p = Request.QueryString["s"], q = Request.QueryString["q"], s = Request.QueryString["s"] == "FirstName" ? "FirstName Desc" : "FirstName" })
+            </th>
+            <th>
+                @Html.ActionLink("Last Name", "Index", new { p = Request.QueryString["s"], q = Request.QueryString["q"], s = Request.QueryString["s"] == "LastName" ? "LastName Desc" : "LastName" })
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.FirstName
+                </td>
+                <td>
+                    @item.LastName
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
