@@ -21,10 +21,10 @@
     <thead>
         <tr>
             <th>
-                @Html.ActionLink("First Name", "Index", new { p = Request.QueryString["s"], q = Request.QueryString["q"], s = Request.QueryString["s"] == "FirstName" ? "FirstName Desc" : "FirstName" })
+                @Html.ActionLink("First Name", ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString(), new { p = Request.QueryString["s"], q = Request.QueryString["q"], s = Request.QueryString["s"] == "FirstName" ? "FirstName Desc" : "FirstName" })
             </th>
             <th>
-                @Html.ActionLink("Last Name", "Index", new { p = Request.QueryString["s"], q = Request.QueryString["q"], s = Request.QueryString["s"] == "LastName" ? "LastName Desc" : "LastName" })
+                @Html.ActionLink("Last Name", ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString(), new { p = Request.QueryString["s"], q = Request.QueryString["q"], s = Request.QueryString["s"] == "LastName" ? "LastName Desc" : "LastName" })
             </th>
         </tr>
     </thead>

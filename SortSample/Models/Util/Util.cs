@@ -52,7 +52,7 @@ namespace SortSample.Models.Util
         {
             foreach (var pi in complexObj.GetType().GetProperties())
             {
-                if (pi.GetValue(complexObj, null).ToString().IndexOf(searchString.ToString(), StringComparison.InvariantCultureIgnoreCase) >= 0)
+                if ((pi.GetValue(complexObj, null) ?? false).ToString().IndexOf(searchString.ToString(), StringComparison.InvariantCultureIgnoreCase) >= 0)
                 {
                     return true;
                 }
@@ -61,5 +61,5 @@ namespace SortSample.Models.Util
             return false;
         }
     }
-    
+
 }
