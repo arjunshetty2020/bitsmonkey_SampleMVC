@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using SortSample.Models;
-using SortSample.Models.Util;
+using SampleMVC.Models;
+using SampleMVC.Models.Util;
 using PagedList;
-using SortSample.Properties;
+using SampleMVC.Properties;
 using System.Xml.Linq;
 using System.IO;
 
-namespace SortSample.Controllers
+namespace SampleMVC.Controllers
 {
     public class PersonController : Controller
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SortSample.Models.Util
+namespace SampleMVC.Models.Util
 {
     public static class Extenstion
     {
