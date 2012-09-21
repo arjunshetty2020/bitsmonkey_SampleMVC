@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleMVC", "SortSample\SampleMVC.csproj", "{81EDFD15-1250-4C2A-9F4C-F7256EAA2173}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleMVC", "SampleMVC\SampleMVC.csproj", "{81EDFD15-1250-4C2A-9F4C-F7256EAA2173}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
