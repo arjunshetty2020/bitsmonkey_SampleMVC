@@ -1,0 +1,19 @@
+﻿@model SampleMVC.Models.Person
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="row-fluid">
+    <div class="span5">
+        @using (Html.BeginForm("Edit", "Person", FormMethod.Post))
+        {
+            @Html.LabelFor(m => m.FirstName)
+            @Html.TextBoxFor(m => m.FirstName)
+            @Html.LabelFor(m => m.LastName)
+            @Html.TextBoxFor(m => m.LastName)            
+            <div class="form-action">
+                <input type="submit" name="submit" value="Save" class="btn btn-primary" />
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn" })
+            </div>            
+        }
+    </div>
+</div>

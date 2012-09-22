@@ -26,6 +26,9 @@
             <th>
                 @Html.ActionLink("Last Name", ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString(), new { p = Request.QueryString["s"], q = Request.QueryString["q"], s = Request.QueryString["s"] == "LastName" ? "LastName Desc" : "LastName" })
             </th>
+            <th>
+                Edit
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -37,6 +40,9 @@
                 </td>
                 <td>
                     @item.LastName
+                </td>
+                <td>
+                    <a href="Person/Edit/@item.Id"><i class="icon-edit"></i></a>
                 </td>
             </tr>
         }

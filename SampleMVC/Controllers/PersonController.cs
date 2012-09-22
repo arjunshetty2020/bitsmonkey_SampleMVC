@@ -14,6 +14,7 @@ namespace SampleMVC.Controllers
     public class PersonController : Controller
     {
         private static int _defaultPageSize = Settings.Default.DefaultPageSize;//gets the configurable page size from the web.config file
+        private static string _xmlPath = Path.Combine(AppDomain.CurrentDomain.GetData("DataDirectory").ToString(), "sampledata.xml");
 
         static List<Person> _persons;
 
@@ -23,8 +24,14 @@ namespace SampleMVC.Controllers
         /// </summary>
         public PersonController()
         {
-            var doc = XDocument.Load(Path.Combine(AppDomain.CurrentDomain.GetData("DataDirectory").ToString(), "sampledata.xml"));
-            _persons = (from n in doc.Descendants("record") select new Person() { FirstName = n.Element("FirstName").Value, LastName = n.Element("LastName").Value }).ToList();
+            var doc = XDocument.Load(_xmlPath);
+            _persons = (from n in doc.Descendants("record")
+                        select new Person()
+                        {
+                            Id = int.Parse(n.Element("Id").Value),
+                            FirstName = n.Element("FirstName").Value,
+                            LastName = n.Element("LastName").Value
+                        }).ToList();
         }
 
         //
@@ -45,5 +52,25 @@ namespace SampleMVC.Controllers
             return View(pl);
         }
 
+        public ActionResult Edit(int id)
+        {
+            return View(_persons.FirstOrDefault(p => p.Id == id));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Person p)
+        {
+            var xdoc = XDocument.Load(_xmlPath);
+            XElement e = xdoc
+                .Descendants("record")
+                .First(i => int.Parse(i.Element("Id").Value) == p.Id);
+
+            e.SetElementValue("FirstName", p.FirstName);
+            e.SetElementValue("LastName", p.LastName);
+
+            xdoc.Save(_xmlPath);
+
+            return RedirectToAction("Index");
+        }
     }
 }
